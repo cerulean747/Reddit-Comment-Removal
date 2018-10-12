@@ -14,39 +14,18 @@ model = GLM(family=Gaussian())
 model.fit(X, y)
 ```
 
-## Part 1: A Failure Mode for Linear Regression
+The two parts of this assignment are in no particular order.  Feel free to do them in either order, here's a short description to guide your thoughts:
 
-The least we could ask of a linear regression is that we can actually fit the model.  It turns out that linear regression has a simple failure mode that can be completely described.
-
-1. Create a feature matrix `X` with two columns and 100 rows.  The first column should be an intercept column of all `1.0`'s, and the second should be randomly sampled from any distribution (a uniform is fine).
-
-2. Create a target vector from a linear data generating process.  For example:
-
-```
-y = 1.0 + 2.0 * X[:, 1] + np.random.normal(size=100)
-```
-
-3. Fit a linear regression to `(X, y)` data.  Look at the fit coefficients (i.e. the *parameter estimates* in statistical language).  Are they what you expect them to be?  If you had fit the model to 1,000,000 data points, what would change about them? 
-
-4. Create a new feature matrix `X` with three columns and 100 rows.  Make the first two columns the same as your previous `X`, but make the third column a *copy of the second column*, i.e., `X` should have the *same data* in the second and third column.
-
-5. Fit a linear regression to the new `(X, y)` data (`y` should be the same as it was in the previous example).  What happened?
-
-6. Hopefully you got a `LinearAlgError`, so there's something unfortunate going on here.
-Think about what you think the correct answer should be, what coefficients *should* the model return?
-
-7. Create a new feature matrix where one column is a multiple of another, and fit a linear regression again, what happened this time?  How can you explain it?
-
-8. Create one last feature matrix where one column is a *linear combination* of two or more other columns.  Fit a linear regression using it.  What happened this time?  Can you explain it?
-
-9. Hopefully you've seen a few linear regressions fail at this point.  Why did they fail?  What is the failure mode for linear regression?
+  - The first part explores the assumptions of regression, and the tools available if these assumptions hold.
+  - The second part explores the situations where linear regression fails.  This section requires some skill in using numpy to create example data.
 
 
-## Part 2: Assumptions for Inferential Regression
+## Part 1: Assumptions for Inferential Regression
 
-When using a linear regression to answer inferential questions, we need to make
-quite a few assumptions about the data generating process (i.e. the population
-we are studying with the regression). 
+When using a linear regression to answer inferential questions, i.e. as a tool
+to answer questions about some hypothetical *population* we need to make quite
+a few assumptions about the data generating process (i.e. the population we are
+studying with the regression). 
 
 - **Independence of the observations.**
 - **Constant Conditional Variance of Errors (Homoskedacity).**
@@ -113,3 +92,40 @@ Make qq-plots for the residuals of the `prestige` and `ccard` (before `log`
 transform) models (it is assumed you will have to do a bit of research to make
 these plots, we've intentionally).  Apply the `log` transform to `AVGEXP` in
 `ccard` and repeat the plot.  What do you observe?
+
+6. The `p_values_` attribute of the model contains the results of applying a z-test to the parameter estimates.  Discuss the following questions with your partner:
+  - What assumptions must hold for this z-test to be valid?
+  - What is the null hypothesis of this z-test?
+  - What is the distribution of the parameter estimates under the null hypothesis?
+
+7. See if you can calculate these p-values by hand, and see if your results match those given by the library.  If you're stuck, feel free to look through the source code of the `py-glm` library to find where the code that calculates these p-values is located.
+
+8. Give some examples of scientific questions that could be answered by these p-values.  Give some examples of questions that are *not* answered by these p-values.
+
+
+## Part 2: A Failure Mode for Linear Regression
+
+The least we could ask of a linear regression is that we can actually fit the model.  It turns out that linear regression has a simple failure mode that can be completely described.
+
+1. Create a feature matrix `X` with two columns and 100 rows.  The first column should be an intercept column of all `1.0`'s, and the second should be randomly sampled from any distribution (a uniform is fine).
+
+2. Create a target vector from a linear data generating process.  For example:
+
+```
+y = 1.0 + 2.0 * X[:, 1] + np.random.normal(size=100)
+```
+
+3. Fit a linear regression to `(X, y)` data.  Look at the fit coefficients (i.e. the *parameter estimates* in statistical language).  Are they what you expect them to be?  If you had fit the model to 1,000,000 data points, what would change about them? 
+
+4. Create a new feature matrix `X` with three columns and 100 rows.  Make the first two columns the same as your previous `X`, but make the third column a *copy of the second column*, i.e., `X` should have the *same data* in the second and third column.
+
+5. Fit a linear regression to the new `(X, y)` data (`y` should be the same as it was in the previous example).  What happened?
+
+6. Hopefully you got a `LinearAlgError`, so there's something unfortunate going on here.
+Think about what you think the correct answer should be, what coefficients *should* the model return?
+
+7. Create a new feature matrix where one column is a multiple of another, and fit a linear regression again, what happened this time?  How can you explain it?
+
+8. Create one last feature matrix where one column is a *linear combination* of two or more other columns.  Fit a linear regression using it.  What happened this time?  Can you explain it?
+
+9. Hopefully you've seen a few linear regressions fail at this point.  Why did they fail?  What is the failure mode for linear regression?
