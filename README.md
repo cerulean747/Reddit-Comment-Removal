@@ -66,24 +66,24 @@ To load the credit card data set into a data frame:
 
 1. Explore the datasets with a [scatter_matrix](https://pandas.pydata.org/pandas-docs/stable/visualization.html#scatter-matrix-plot) and a [boxplot](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.boxplot.html).
    
-Fit a linear regression model to each of the datasets. Print and examine the
+2. Fit a linear regression model to each of the datasets. Print and examine the
 summaries of the models.  The summary should report the parameter estimates and
 their standard errors.
 
-2. Plot the residuals of the models against the fitted y-values.  Do these
+3. Plot the residuals of the models against the fitted y-values.  Do these
 residuals show any concerning patterns?  If so, how should you deal with them?
    
-3. By inspecting the residual plots, which model is more likely to have
+4. By inspecting the residual plots, which model is more likely to have
 **heteroscedastic** residuals? Explain what heteroscedasticity means.
 
-4. What uses of the model would a violation of heteroscedasticity invalidate?
+5. What uses of the model would a violation of heteroscedasticity invalidate?
 
-4. One of the most common treatments to reducing heteroscedasticity is to take
+6. One of the most common treatments to reducing heteroscedasticity is to take
 the logarithm of the response variable, especially if the conditional distribution of
 the response variable is skewed. Take the log of `AVGEXP` in `ccard` data.
 Re-fit the model to the logarithm of `AVGEXP`, and re-plot the residuals. 
    
-5. To test if the residuals are normally distributed, the common practice is to
+7. To test if the residuals are normally distributed, the common practice is to
 use a qq-plot (for quantile-quantile-plot). The Q-Q plot plots the quantile of
 the normal distribution against that of the residuals and checks
 for alignment of the quantiles.
@@ -93,14 +93,14 @@ transform) models (it is assumed you will have to do a bit of research to make
 these plots, we've intentionally).  Apply the `log` transform to `AVGEXP` in
 `ccard` and repeat the plot.  What do you observe?
 
-6. The `p_values_` attribute of the model contains the results of applying a z-test to the parameter estimates.  Discuss the following questions with your partner:
+8. The `p_values_` attribute of the model contains the results of applying a z-test to the parameter estimates.  Discuss the following questions with your partner:
   - What assumptions must hold for this z-test to be valid?
   - What is the null hypothesis of this z-test?
   - What is the distribution of the parameter estimates under the null hypothesis?
 
-7. See if you can calculate these p-values by hand, and see if your results match those given by the library.  If you're stuck, feel free to look through the source code of the `py-glm` library to find where the code that calculates these p-values is located.
+9. See if you can calculate these p-values by hand, and see if your results match those given by the library.  If you're stuck, feel free to look through the source code of the `py-glm` library to find where the code that calculates these p-values is located.
 
-8. Give some examples of scientific questions that could be answered by these p-values.  Give some examples of questions that are *not* answered by these p-values.
+10. Give some examples of scientific questions that could be answered by these p-values.  Give some examples of questions that are *not* answered by these p-values.
 
 
 ## Part 2: A Failure Mode for Linear Regression
