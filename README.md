@@ -98,7 +98,7 @@ these plots, we've intentionally).  Apply the `log` transform to `AVGEXP` in
   - What is the null hypothesis of this z-test?
   - What is the distribution of the parameter estimates under the null hypothesis?
 
-9. See if you can calculate these p-values by hand, and see if your results match those given by the library.  If you're stuck, feel free to look through the source code of the `py-glm` library to find where the code that calculates these p-values is located.
+9. See if you can calculate these p-values by hand, and see if your results match those given by the library.  If you're stuck, feel free to look through the source code of the `py-glm` library to find [where the code that calculates these p-values](https://github.com/madrury/py-glm/blob/f3d6f68b0024c5fab598749d20c758fd2e9ccb6c/glm/glm.py#L305) is located.
 
 10. Give some examples of scientific questions that could be answered by these p-values.  Give some examples of questions that are *not* answered by these p-values.
 
