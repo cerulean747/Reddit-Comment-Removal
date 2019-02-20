@@ -61,7 +61,7 @@ To load the prestige data set into a data frame:
 To load the credit card data set into a data frame:
 
   ```python
-  credit_card = sm.datasets.ccard.load_pandas().data
+  credit_card = statsmodels.datasets.ccard.load_pandas().data
   ```
 
 1. Explore the datasets with a [scatter_matrix](https://pandas.pydata.org/pandas-docs/stable/visualization.html#scatter-matrix-plot) and a [boxplot](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.boxplot.html).
