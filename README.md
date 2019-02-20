@@ -76,7 +76,7 @@ residuals show any concerning patterns?  If so, how should you deal with them?
 4. By inspecting the residual plots, which model is more likely to have
 **heteroscedastic** residuals? Explain what heteroscedasticity means.
 
-5. What uses of the model would a violation of heteroscedasticity invalidate?
+5. What uses of the model would heteroscedasticity (a violation of homoscedasticity) invalidate?
 
 6. One of the most common treatments to reducing heteroscedasticity is to take
 the logarithm of the response variable, especially if the conditional distribution of
