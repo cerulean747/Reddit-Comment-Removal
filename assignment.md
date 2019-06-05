@@ -61,6 +61,7 @@ To load the prestige data set into a data frame:
 To load the credit card data set into a data frame:
 
   ```python
+  import statsmodels
   credit_card = statsmodels.datasets.ccard.load_pandas().data
   ```
 
