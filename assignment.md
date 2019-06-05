@@ -90,7 +90,7 @@ for alignment of the quantiles.
     
 Make qq-plots for the residuals of the `prestige` and `ccard` (before `log`
 transform) models (it is assumed you will have to do a bit of research to make
-these plots, we've intentionally).  Apply the `log` transform to `AVGEXP` in
+these plots, we've intentionally omitted how to make them).  Apply the `log` transform to `AVGEXP` in
 `ccard` and repeat the plot.  What do you observe?
 
 8. The `p_values_` attribute of the model contains the results of applying a z-test to the parameter estimates.  Discuss the following questions with your partner:
