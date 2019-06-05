@@ -2,7 +2,7 @@
 
 Linear regression is often used a predictive tool, and in this use case we don't need many statistical assumptions for it to do an admirable job.  Another common use for linear regression is *inferential*, and for this use case we need to check some statistical properties of the model.
 
-For this spring, make sure you have the [py-glm](https://github.com/madrury/py-glm) library installed.  This library supports the inferential tools we will use today with a simple interface (python lacks well designed tools for inferential work, so we wrote this one ourselves).  Please take a moment to read the README for this library.
+For this sprint, make sure you have the [py-glm](https://github.com/madrury/py-glm) library installed.  This library supports the inferential tools we will use today with a simple interface (python lacks well designed tools for inferential work, so we wrote this one ourselves).  Please take a moment to read the README for this library.
 
 The process for fitting a linear model with the `GLM` library looks like:
 
