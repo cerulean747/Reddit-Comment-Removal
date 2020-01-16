@@ -2,7 +2,7 @@
 
 Linear regression is often used a predictive tool, and in this use case we don't need many statistical assumptions for it to do an admirable job.  Another common use for linear regression is *inferential*, and for this use case we need to check some statistical properties of the model.
 
-For this spring, make sure you have the [py-glm](https://github.com/madrury/py-glm) library installed.  This library supports the inferential tools we will use today with a simple interface (python lacks well designed tools for inferential work, so we wrote this one ourselves).  Please take a moment to read the README for this library.
+For this sprint, make sure you have the [py-glm](https://github.com/madrury/py-glm) library installed.  This library supports the inferential tools we will use today with a simple interface (python lacks well designed tools for inferential work, so we wrote this one ourselves).  Please take a moment to read the README for this library.
 
 The process for fitting a linear model with the `GLM` library looks like:
 
@@ -91,7 +91,7 @@ for alignment of the quantiles.
     
 Make qq-plots for the residuals of the `prestige` and `ccard` (before `log`
 transform) models (it is assumed you will have to do a bit of research to make
-these plots, we've intentionally).  Apply the `log` transform to `AVGEXP` in
+these plots, we've intentionally omitted how to make them).  Apply the `log` transform to `AVGEXP` in
 `ccard` and repeat the plot.  What do you observe?
 
 8. The `p_values_` attribute of the model contains the results of applying a z-test to the parameter estimates.  Discuss the following questions with your partner:
