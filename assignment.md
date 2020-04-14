@@ -71,7 +71,7 @@ To load the credit card data set into a data frame:
 summaries of the models.  The summary should report the parameter estimates and
 their standard errors.
 
-3. Plot the residuals of the models against the fitted y-values.  Do these
+3. Plot the residuals of the models against the predicted values.  Do these
 residuals show any concerning patterns?  If so, how should you deal with them?
    
 4. By inspecting the residual plots, which model is more likely to have
