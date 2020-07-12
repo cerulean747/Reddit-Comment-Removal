@@ -1,4 +1,8 @@
-# Part 0: Initiating a `SparkSession`
+# Spark Dataframes and SparkSQL
+
+## Basic
+
+### Part 1: Initiating a `SparkSession`
 
 1\. Initiate a `SparkSession`. A `SparkSession` initializes both a `SparkContext` and a `SQLContext` to use RDD-based and DataFrame-based functionalities of Spark. If you launched a notebook using `bash scripts/jupyspark.sh`, the SparkSession and SparkContext will already be defined as `spark` and `sc`, respectively.
 
@@ -12,7 +16,7 @@ spark = (ps.sql.SparkSession.builder
 sc = spark.sparkContext
 ```
 
-# Part 1: Introduction to SparkSQL
+### Part 2: Introduction to SparkSQL
 
 SparkSQL allows you to execute relational queries on **structured** data using
 Spark. Today we'll get some practice with this by running some queries on a
@@ -47,8 +51,9 @@ conditions:
 
    Hint: In spark, while using `filter()` or `where()`, you can create a condition that tests if a column, made of an array, contains a given value. The functions is [pyspark.sql.functions.array_contains](http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.functions.array_contains).
 
+## Advanced
 
-## Part 2: Spark and SparkSQL in Practice
+### Part 3: Spark and SparkSQL in Practice
 
 Now that we have a basic knowledge of how SparkSQL works, let's try dealing with a real-life scenario where some data manipulation/cleaning is required before we can query the data with SparkSQL. We will be using a dataset of user information and a data set of purchases that our users have made. We'll be cleaning the data in a regular Spark RDD before querying it with SparkSQL.
 
