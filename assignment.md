@@ -6,7 +6,7 @@
 
 1\. Initiate a `SparkSession`. A `SparkSession` initializes both a `SparkContext` and a `SQLContext` to use RDD-based and DataFrame-based functionalities of Spark. If you launched a notebook using `bash scripts/jupyspark.sh`, the SparkSession and SparkContext will already be defined as `spark` and `sc`, respectively.
 
-```
+```python
 import pyspark as ps
 spark = (ps.sql.SparkSession.builder 
         .master("local[4]") 
@@ -45,11 +45,11 @@ conditions:
    ``` attributes.`Accepts Credit Cards` ```.  **NOTE**: We are actually looking for the value `'true'`, not the boolean value True!)
    - Contains Restaurants in the `categories` array.  
 
-   Hint: `LATERAL VIEW explode()` can be used to access the individual elements
+   > Hint 1 : `LATERAL VIEW explode()` can be used to access the individual elements
    of an array (i.e. the `categories` array). For reference, you can see the
    [first example](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+LateralView) on this page.
 
-   Hint: In spark, while using `filter()` or `where()`, you can create a condition that tests if a column, made of an array, contains a given value. The functions is [pyspark.sql.functions.array_contains](http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.functions.array_contains).
+   > Hint 2: In spark, while using `filter()` or `where()`, you can create a condition that tests if a column, made of an array, contains a given value. The functions is [pyspark.sql.functions.array_contains](http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.functions.array_contains).
 
 ## Advanced
 
