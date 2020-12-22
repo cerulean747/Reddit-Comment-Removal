@@ -1,6 +1,3 @@
-# reddit-comment-removal
-
-
 # Predicting Comment Removal from r/worldnews: January 2019
 
 ### Table of Contents  
@@ -49,4 +46,4 @@ The first two comments above can be easily construed as insulting. The last two,
 
 In terms of word importance, intact and removed comments do share some words in common, such as "think", "know", and "country". However, removed comments feature more profanity, more mentions of "Trump", and more prejudice-oriented words compared to intact comments.
 
-<img src="imgs/intact_wordcloud.png" width = "450"/>  <img src="imgs/removed_wordcloud.png" width = "450"/>
+<img src="imgs/intact_wordcloud.png" width = "450"/>          <img src="imgs/removed_wordcloud.png" width = "450"/>
