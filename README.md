@@ -3,8 +3,8 @@
 ### Table of Contents  
 [Description](#description)  
 [Data Preparation](#data-preparation)   
-[Exploratory Data Analysis](#exploratory-data-analysis)<br/>
-[Modeling](#modeling)
+[Exploratory Data Analysis](#exploratory-data-analysis)
+[Modeling Approach](#modeling)
 [Results](#results)
 [Summary](#summary)
 
