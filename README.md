@@ -3,9 +3,9 @@
 ### Table of Contents  
 [Description](#description)  
 [Data Preparation](#data-preparation)   
-[Exploratory Data Analysis](#exploratory-data-analysis)
-[Modeling Approach](#modeling)
-[Results](#results)
+[Exploratory Data Analysis](#exploratory-data-analysis)<br/>
+[Modeling Approach](#modeling)<br/>
+[Results](#results)<br/>
 [Summary](#summary)
 
 ## Description
