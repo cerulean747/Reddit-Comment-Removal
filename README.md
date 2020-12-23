@@ -18,9 +18,9 @@ This project predicts whether or not comments from Reddit’s PoliticalDiscussio
 
 My dataset comprises 826,163 total comments, of which 24,952 (3%) are removed by moderators. I discuss different techniques I use to address the class imbalance later on in the modeling phase. 
 
-My data collection process involves first querying both removed/user-deleted and intact comments from r/worldnews for the month of January 2019 from Google BigQuery. In order to restore specifically moderator-removed comments (marked with "[removed]"), I next retrieved the body text for these comments through Reddit's pushshift.api. 
+My data collection process involves first querying both removed and intact comments from r/worldnews for the month of January 2019 from Google BigQuery. In order to restore specifically moderator-removed comments (marked with "[removed]"), I next retrieved the original body text for these comments through Reddit's pushshift.api. 
 
-I then merged these comments with intact ones and removed unnecessary columns. Next I removed automoderator-flagged comments (comments that generated an automatic response or were automatically flagged as spam: these comments did not contain the original textual context), user-deleted (marked by "[deleted]" in the text body), and otherwise missing (removed comments that could not be restored) comments. After this, I then created my target variable as an indicator showing whether or not a comment has been removed (1 = removed, 0 = intact). 
+I then merged these comments with intact ones and removed unnecessary columns. Next I removed automoderator-flagged comments (comments that generated an automatic response or were automatically flagged as spam: these comments did not contain the original textual context), user-deleted (marked by "[deleted]" in the text body), and otherwise missing (removed comments that could not be restored) comments. Finally, I then created my target variable as an indicator showing whether or not a comment has been removed (1 = removed, 0 = intact). 
 
 My text featurization pipeline is as follows:
 1) Normalize text to convert comments into more uniform sequences
@@ -47,3 +47,12 @@ The first two comments above can be easily construed as insulting. The last two,
 In terms of word importance, intact and removed comments do share some words in common, such as "think", "know", and "country". However, removed comments feature more profanity, more mentions of "Trump", and more prejudice-oriented words compared to intact comments.
 
 <img src="imgs/intact_wordcloud.png" width = "450"/>          <img src="imgs/removed_wordcloud.png" width = "450"/>
+
+## Modeling Approach
+
+My modeling framework uses stratified k-fold cross validation on the training dataset (from a 75% - 25% train-test split), and compares approaches using no undersampling vs. undersampling, and unigrams vs. bigrams. Before running models, I first account for the target variable class imbalance through stratified k-fold cross validation. Stratified k-fold cross validation maintains the same class distribution in each split of the data as that in the training dataset, in order to give a reliable estimate of model performance. I also compare model performance using both no undersampling and undersampling methods. Undersampling randomly removes examples from the majority class (intact comments) until the distribution of class values is evenly split. 
+
+I use five models, including a baseline dummy classifier, logistic regression, random forest, gradient boosting, and Naïve-Bayes. My baseline dummy classifier generates predictions with probabilities based on the training set’s class distribution.
+
+In terms of evaluation metrics, it’s not clear whether false positives or false negatives are more important: both removing comments that shouldn’t have been removed and not removing comments that should have been removed would likely annoy people either way. To be conservative, I use precision, recall, and F1 scores to evaluate model performance. 
+
