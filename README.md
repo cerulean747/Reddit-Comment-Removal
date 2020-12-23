@@ -4,7 +4,7 @@
 [Description](#description)  
 [Data Preparation](#data-preparation)   
 [Exploratory Data Analysis](#exploratory-data-analysis)<br/>
-[Modeling Approach](#modeling)<br/>
+[Modeling Approach](#modeling-approach)<br/>
 [Results](#results)<br/>
 [Summary](#summary)
 
