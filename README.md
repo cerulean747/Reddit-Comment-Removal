@@ -8,11 +8,13 @@
 [Results](#results)<br/>
 [Summary](#summary)
 
+
 ## Description
 
 Reddit is a website that aggregates news and social content and provides a platform for discussion. Although basically any topic can be discussed on Reddit, the site is heavily moderated. Users report offensive and abusive comments or comments that otherwise violate subreddit rules to moderators, who then review these comments and decide whether or not to remove them. 
 
 This project predicts whether or not comments from Reddit’s PoliticalDiscussion subreddit will be removed, in order to potentially reduce the amount of user and moderator work. In particular, I investigate whether or not textual features from the comments themselves are predictive of comment removal, using supervised learning models such as logistic regression, random forest, gradient boosting, and Naive-Bayes classification. 
+
 
 ## Data Preparation
 
@@ -28,7 +30,6 @@ My text featurization pipeline is as follows:
 3) Lowercase and lemmatize words
 4) Create bag of words and term frequency-inverse document frequency (tf-idf) matrices.
 
-I noticed that there were a few removed comments using just the words "buh bye" repeated a few thousand times. I removed these comments so as to not bias my modeling results. 
 
 ## Exploratory Data Analysis
 
@@ -46,7 +47,8 @@ The first two comments above can be easily construed as insulting. The last two,
 
 In terms of word importance, intact and removed comments do share some words in common, such as "think", "know", and "country". However, removed comments feature more profanity, more mentions of "Trump", and more prejudice-oriented words compared to intact comments.
 
-<img src="imgs/intact_wordcloud.png" width = "450"/>          <img src="imgs/removed_wordcloud.png" width = "450"/>
+Intact Comments <img src="imgs/intact_wordcloud.png" width = "450"/>          Removed Comments <img src="imgs/removed_wordcloud.png" width = "450"/>
+
 
 ## Modeling Approach
 
