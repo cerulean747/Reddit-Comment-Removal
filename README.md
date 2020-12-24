@@ -13,7 +13,7 @@
 
 Reddit is a website that aggregates news and social content and provides a platform for discussion. Although basically any topic can be discussed on Reddit, the site is heavily moderated. Users report offensive and abusive comments or comments that otherwise violate subreddit rules to moderators, who then review these comments and decide whether or not to remove them. 
 
-This project predicts whether or not comments from Reddit’s PoliticalDiscussion subreddit will be removed, in order to potentially reduce the amount of user and moderator work. In particular, I investigate whether or not textual features from the comments themselves are predictive of comment removal, using supervised learning models such as logistic regression, random forest, gradient boosting, and Naive-Bayes classification. 
+This project predicts whether or not comments from Reddit’s r/worldnews subreddit will be removed, in order to potentially reduce the amount of user and moderator work. In particular, I investigate whether or not textual features from the comments themselves are predictive of comment removal, using supervised learning models such as logistic regression, random forest, gradient boosting, and Naive-Bayes classification. 
 
 
 ## Data Preparation
@@ -43,7 +43,7 @@ A few examples of removed comments are below:
 
 “Perhaps finally some justice.”
 
-The first two comments above can be easily construed as insulting. The last two, at least taken out of context, don't seem directly offensive, but if they could be if we do consider the context.
+The first two comments above can be easily construed as insulting. The last two, at least taken out of context, don't seem directly offensive, but they could be if we do consider the context.
 
 In terms of word importance, intact and removed comments do share some words in common, such as "think", "know", and "country". However, removed comments feature more profanity, more mentions of "Trump", and more prejudice-oriented words compared to intact comments.
 
@@ -55,7 +55,7 @@ In terms of word importance, intact and removed comments do share some words in 
 
 My modeling framework uses stratified k-fold cross validation on the training dataset (from a 75% - 25% train-test split), and compares approaches using no undersampling vs. undersampling, and unigrams vs. bigrams. Before running models, I first account for the target variable class imbalance through stratified k-fold cross validation. In order to yield a reliable estimate of model performance, stratified k-fold cross validation maintains the same class distribution in each split of the data as that in the training dataset. I also compare model performance using both no undersampling and undersampling methods. Undersampling randomly removes examples from the majority class (intact comments) until the distribution of class values is evenly split. 
 
-I use five models, including a baseline dummy classifier, logistic regression, random forest, gradient boosting, and Naïve-Bayes. My baseline dummy classifier generates predictions with probabilities based on the training set’s class distribution.
+I use five models, including a baseline dummy classifier, logistic regression, random forest, gradient boosting, and Naïve-Bayes. My baseline dummy classifier generates predictions using probabilities based on the training set’s class distribution.
 
-In terms of evaluation metrics, it’s not clear whether false positives or false negatives are more important: both removing comments that shouldn’t have been removed and not removing comments that should have been removed would likely annoy people either way. To be conservative, I use precision, recall, and F1 scores to evaluate model performance. 
+In terms of evaluation metrics, it’s not clear whether false positives or false negatives are more important: both removing comments that shouldn’t have been removed and not removing comments that should have been removed would likely annoy Reddit users either way. To be conservative, I use precision, recall, and F1 scores to evaluate model performance. 
 
