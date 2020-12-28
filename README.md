@@ -1,4 +1,4 @@
-# Predicting Comment Removal from r/worldnews: January 2019
+# Predicting Comment Removal from Reddit r/worldnews: January 2019
 
 ### Table of Contents  
 [Description](#description)  
