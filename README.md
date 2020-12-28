@@ -45,7 +45,7 @@ A few examples of removed comments are below:
 
 The first two comments above can be easily construed as insulting. The last two, at least taken out of context, don't seem directly offensive, but they could be if we do consider the context.
 
-In terms of word importance, intact and removed comments do share some words in common, such as "think", "know", and "country". However, removed comments feature more profanity, more mentions of "Trump", and more prejudice-oriented words compared to intact comments.
+In terms of word importance, intact and removed comments share some words in common, such as "think", "know", and "country". However, removed comments feature more profanity, more mentions of "Trump", and more prejudice-oriented words compared to intact comments.
 
 
 <img src="imgs/intact_wordcloud.png" width = "450"/>           <img src="imgs/removed_wordcloud.png" width = "450"/>
@@ -53,9 +53,13 @@ In terms of word importance, intact and removed comments do share some words in 
 
 ## Modeling Approach
 
-My modeling framework uses stratified k-fold cross validation on the training dataset (from a 75% - 25% train-test split), and compares approaches using no undersampling vs. undersampling, and unigrams vs. bigrams. Before running models, I first account for the target variable class imbalance through stratified k-fold cross validation. In order to yield a reliable estimate of model performance, stratified k-fold cross validation maintains the same class distribution in each split of the data as that in the training dataset. I also compare model performance using both no undersampling and undersampling methods. Undersampling randomly removes examples from the majority class (intact comments) until the distribution of class values is evenly split. 
+My modeling framework uses stratified k-fold cross validation on the training dataset (from a stratified 80% - 20% train-test split), and compares approaches using no undersampling vs. undersampling, and unigrams (single words) vs. bigrams (word pairings). Before running models, I first account for the target variable class imbalance through stratified train-test-split and stratified k-fold cross validation approaches. In order to yield a reliable estimate of model performance, stratification maintains the same class distribution in each split of the data as that in the original dataset. This is especially important for imbalanced classes, where any deviations from the existing imbalance in a given split can result in performance that is inconsistent with that of other splits and not reflective of true performance. I also compare model performance using both no undersampling and undersampling methods. Undersampling randomly removes examples from the majority class (intact comments) until the distribution of class values is evenly split. 
 
 I use five models, including a baseline dummy classifier, logistic regression, random forest, gradient boosting, and Naïve-Bayes. My baseline dummy classifier generates predictions using probabilities based on the training set’s class distribution.
 
-In terms of evaluation metrics, it’s not clear whether false positives or false negatives are more important: both removing comments that shouldn’t have been removed and not removing comments that should have been removed would likely annoy Reddit users either way. To be conservative, I use precision, recall, and F1 scores to evaluate model performance. 
+In terms of evaluation metrics, it’s not clear whether false positives or false negatives are more important in this case: both removing comments that shouldn’t have been removed and not removing comments that should have been removed would likely annoy Reddit users either way. To be conservative, I use precision, recall, and F1 scores to evaluate model performance. 
+
+
+
+
 
