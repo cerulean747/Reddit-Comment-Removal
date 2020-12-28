@@ -5,7 +5,7 @@
 [Data Preparation](#data-preparation)   
 [Exploratory Data Analysis](#exploratory-data-analysis)<br/>
 [Modeling Approach](#modeling-approach)<br/>
-[Results](#results)<br/>
+[Modeling Results](#modeling-results)<br/>
 [Summary](#summary)
 
 
@@ -60,6 +60,36 @@ My modeling framework uses stratified k-fold cross validation on the training da
 I use five models, including a baseline dummy classifier, logistic regression, random forest, gradient boosting, and Naïve-Bayes. My baseline dummy classifier generates predictions using probabilities based on the training set’s class distribution.
 
 In terms of evaluation metrics, it’s not clear whether false positives or false negatives are more important in this case: both removing comments that shouldn’t have been removed and not removing comments that should have been removed would likely annoy Reddit users either way. To be conservative, I use precision, recall, and F1 scores to evaluate model performance. 
+
+
+## Modeling Results
+
+My modeling results compare no undersampling with undersampling, and unigrams with bigrams. For the no undersampling approaches, we see high precision and low recall, but for the undersampling approaches, we see low precision and high recall. The model that yields the highest F1 score is Random Forest using bigrams and no undersampling, with an F1 score of 0.203, precision of 0.481, and recall of 0.129. These results show improvement over a baseline F1 score, precision, and recall of 0.029.
+
+<img src="imgs/Unigrams%20%26%20No%20Undersampling.png" width = "450"/>         <img src="imgs/Unigrams%20%26%20Undersampling.png" width = "450"/>   
+
+<img src="imgs/Bigrams%20%26%20No%20Undersampling.png" width = "450"/>          <img src="imgs/Bigrams%20%26%20Undersampling.png" width = "450"/>  
+
+### Modeling Results: Optimal Decision Thresholds
+
+Using the same modeling framework described above, I then evaluated model performance across a range of decision thresholds to maximize the precision-recall tradeoff (F1 scores) across all models and approaches. The model that yields the highest F1 score is Logistic Regression using bigrams and no undersampling, with an F1 score of 0.298, precision of 0.281, recall of 0.316, and decision threshold of 0.103.
+
+<img src="imgs/Tuned%20Results:%20Unigrams%20%26%20No%20Undersampling.png" width = "450"/>     <img src="imgs/Tuned%20Results:%20Unigrams%20%26%20Undersampling.png" width = "450"/>   
+
+<img src="imgs/Tuned%20Results:%20Bigrams%20%26%20No%20Undersampling.png" width = "450"/>      <img src="imgs/Tuned%20Results:%20Bigrams%20%26%20Undersampling.png" width = "450"/>  
+
+
+## Summary
+
+### Implications
+
+Although the modeling results above represent considerable improvements over the baseline, the F1 scores themselves aren't especially high. Potential reasons include subjectivity related to comment offensiveness, missing context, missing predictors, and/or insufficient models. First of all, there may be variation in what users and moderators consider offensive, and it may also vary from subreddit to subreddit. While other users may not be as offended, a few users might get especially triggered by a comment and report it multiple times, which may heighten the overall likelihood of removing that comment. Additionally, comments may be offensive in certain contexts but not others. A comment like "Perhaps finally some justice" isn't directly offensive taken out of context, but taken as a response to another comment or post, the underlying meaning may be completely different. It’s also possible that there exist more complex interactions within the text that the bag of words model doesn’t capture, so it'd be interesting to look at other models to see if we can increase predictive power.
+
+### Next Steps
+
+In terms of next steps, there are several things to potentially explore. Other than comments, I also have data on authors and comment scores, which may be other features to add to the models. Also, if there is a way to match comments to surrounding comments or parent posts and map out the underlying nesting structure, then we may be able to capture the surrounding context of these comments and incorporate that into our models. We can also fine tune hyperparameters, try out other sampling methods, or experiment with higher-order n-grams. Lastly, it’d be interesting to explore other models such as simple, convolutional (CNN), or recurrent (RNN) neural networks; long-short term memory cell (LSTM); and/or character/word-level embeddings to capture more complex textual relationships and increase predictive power.
+
+
 
 
 
