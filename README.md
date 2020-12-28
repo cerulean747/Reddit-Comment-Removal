@@ -20,9 +20,11 @@ This project predicts whether or not comments from Reddit’s r/worldnews subred
 
 My dataset comprises 826,163 total comments, of which 24,952 (3%) are removed by moderators. I discuss different techniques I use to address the class imbalance later on in the modeling phase. 
 
+<img src="imgs/removed_class_imbalance.png" width = "450"/>
+
 My data collection process involves first querying both removed and intact comments from r/worldnews for the month of January 2019 from Google BigQuery. In order to restore specifically moderator-removed comments (marked with "[removed]"), I next retrieved the original body text for these comments through Reddit's pushshift.api. 
 
-I then merged these comments with intact ones and removed unnecessary columns. Next I removed automoderator-flagged comments (comments that generated an automatic response or were automatically flagged as spam: these comments did not contain the original textual context), user-deleted (marked by "[deleted]" in the text body), and otherwise missing (removed comments that could not be restored) comments. Finally, I then created my target variable as an indicator showing whether or not a comment has been removed (1 = removed, 0 = intact). 
+I then merged these comments with intact ones and removed unnecessary columns. Next I removed automoderator-flagged comments (comments that generated an automatic response or were automatically flagged as spam: these comments did not contain the original textual context), user-deleted (marked by "[deleted]" in the text body), and otherwise missing (removed comments that could not be restored) comments. Lastly, I created my target variable as an indicator showing whether or not a comment has been removed (1 = removed, 0 = intact). 
 
 My text featurization pipeline is as follows:
 1) Normalize text to convert comments into more uniform sequences
