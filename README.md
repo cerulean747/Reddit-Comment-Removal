@@ -81,13 +81,13 @@ Using the same modeling framework described above, I then evaluated model perfor
 
 ## Summary
 
-#### Implications
+### Implications
 
 Although the modeling results above show considerable improvements over the baseline, the F1 scores themselves aren't especially high. Potential reasons include subjectivity related to comment offensiveness, missing context, missing predictors, and/or insufficient models. First, there may be variation in what users and moderators consider offensive, and it may also vary from subreddit to subreddit. While other users may not be as offended, a few users might get especially triggered by a comment and report it multiple times, which may heighten the overall likelihood of removing that comment. Additionally, comments may be offensive in certain contexts but not others. A comment like "Perhaps finally some justice" isn't directly offensive taken out of context, but taken as a response to another comment or post, the underlying meaning may be completely different. It’s also possible that there exist more complex interactions within the text that the bag of words model doesn’t capture, so it'd be interesting to look at other models to see if we can increase predictive power.
 
-#### Next Steps
+### Next Steps
 
-In terms of next steps, there are several things to potentially explore. Other than comments, I also have data on authors and comment scores, which may be other features to add to the models. Also, if there is a way to match comments to surrounding comments or parent posts and map out the underlying nesting structure, then we may be able to capture the surrounding context of these comments and incorporate that into our models. We can also fine tune hyperparameters, try out other sampling methods, or experiment with higher-order n-grams. Lastly, it’d be interesting to explore other models such as simple, convolutional (CNN), or recurrent (RNN) neural networks; long-short term memory cell (LSTM); and/or character/word-level embeddings to capture more complex textual relationships and increase predictive power.
+In terms of next steps, there are several things to potentially explore. Other than comments, I also have data on authors and comment scores, which may be other features to add to the models. Also, if there is a way to match comments to surrounding comments or parent posts and map out the underlying nesting structure, then we may be able to capture the surrounding context of these comments and incorporate that into the models. We can also fine tune hyperparameters, try out other sampling methods, or experiment with higher-order n-grams. Lastly, it’d be interesting to explore other models such as simple, convolutional (CNN), or recurrent (RNN) neural networks; long-short term memory cell (LSTM); and/or character/word-level embeddings to capture more complex textual relationships and increase predictive power.
 
 
 
