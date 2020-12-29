@@ -87,7 +87,7 @@ Although the modeling results above show considerable improvements over the base
 
 ### Next Steps
 
-In terms of next steps, there are several things to potentially explore. Other than comments, I also have data on authors and comment scores, which may be other features to add to the models. Also, if there is a way to match comments to surrounding comments or parent posts and map out the underlying nesting structure, then we may be able to capture the surrounding context of these comments and incorporate that into the models. We can also fine tune hyperparameters, try out other sampling methods, or experiment with higher-order n-grams. Lastly, it’d be interesting to explore other models such as simple, convolutional (CNN), or recurrent (RNN) neural networks; long-short term memory cell (LSTM); and/or character/word-level embeddings to capture more complex textual relationships and increase predictive power.
+In terms of next steps, there are several things to potentially explore. Other than comments, I also have data on authors and comment scores, which may be other features to add to the models. Also, if there is a way to match comments to surrounding comments or parent posts and map out the underlying nesting structure, then we may be able to capture the surrounding context of these comments and incorporate that into the models. We can also fine tune hyperparameters, try out other sampling methods, or experiment with higher-order n-grams. Lastly, it’d be interesting to explore other models such as simple, convolutional (CNN), or recurrent (RNN) neural networks; long-short term memory cell (LSTM); and/or character/word-level embeddings to possibly capture more complex textual relationships and increase predictive power.
 
 
 
