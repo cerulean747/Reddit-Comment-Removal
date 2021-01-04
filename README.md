@@ -64,7 +64,7 @@ In terms of evaluation metrics, it’s not clear whether false positives or fals
 
 ## Modeling Results
 
-My modeling results (shown below) compare no undersampling with undersampling, and unigrams with bigrams. For the no undersampling approaches, we see high precision and low recall, but for the undersampling approaches, we see low precision and high recall. The model that yields the highest F1 score is Random Forest using bigrams and no undersampling, with an F1 score of 0.203, precision of 0.481, and recall of 0.129. These results show improvement over a baseline F1 score, precision, and recall of 0.029.
+My modeling results (shown below) compare no undersampling with undersampling, and unigrams with bigrams. For the no undersampling approaches, we see high precision and low recall, but for the undersampling approaches, we see low precision and high recall. The model that yields the highest F1 score for my "Removed" comments class is Random Forest using bigrams and no undersampling, with an F1 score of 0.203, precision of 0.481, and recall of 0.129. These results show improvement over a baseline F1 score, precision, and recall of 0.029.
 
 <img src="imgs/Unigrams%20%26%20No%20Undersampling.png" width = "475"/>         <img src="imgs/Unigrams%20%26%20Undersampling.png" width = "475"/>   
 
