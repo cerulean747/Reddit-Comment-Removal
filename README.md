@@ -36,7 +36,7 @@ My text featurization pipeline is as follows:
 1) Normalize text to convert comments into more uniform sequences
 2) Remove punctuation, unnecessary characters, and stopwords
 3) Lowercase and lemmatize words
-4) Create bag of words and term frequency-inverse document frequency (tf-idf) matrices.
+4) Create bag of words term frequency-inverse document frequency (tf-idf) matrices.
 
 
 ## Exploratory Data Analysis
