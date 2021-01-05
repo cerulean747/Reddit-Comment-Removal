@@ -1,5 +1,12 @@
 # Predicting Comment Removal from Reddit r/worldnews: January 2019
 
+## Overview (tl;dr)
+*	Using natural language processing techniques and supervised learning models such as logistic regression, random forest, gradient boosting, and Naive-Bayes classification, I predict whether or not user comments will get removed from the r/worldnews subreddit for the month of January 2019. 
+*	Random Forest using bigrams and no undersampling yields the highest F1, with a score of 0.203, precision of 0.481, and recall of 0.129. These results show improvement over baseline F1, precision, and recall scores of 0.029.
+*	After maximizing for F1 scores across a range of decision thresholds, logistic regression yields the highest F1 using bigrams and no undersampling, with a score of 0.298, precision of 0.281, recall of 0.316, and decision threshold of 0.103.
+* **Update:** I'm currently in the process of selecting additional features and experimenting with NNs/CNNs/RNNs and text embeddings. I will revise this analysis based on my updated findings.
+
+
 ### Table of Contents  
 [Description](#description)  
 [Data Preparation](#data-preparation)   
@@ -7,15 +14,6 @@
 [Modeling Approach](#modeling-approach)<br/>
 [Modeling Results](#modeling-results)<br/>
 [Summary](#summary)
-
-
-## Overview (tl;dr)
-
-*	Using natural language processing techniques and supervised learning models such as logistic regression, random forest, gradient boosting, and Naive-Bayes classification, I predict whether or not user comments will get removed from the r/worldnews subreddit for the month of January 2019. 
-*	Random Forest using bigrams and no undersampling yields the highest F1, with a score of 0.203, precision of 0.481, and recall of 0.129. These results show improvement over baseline F1, precision, and recall scores of 0.029.
-*	After maximizing for F1 scores across a range of decision thresholds, logistic regression yields the highest F1 using bigrams and no undersampling, with a score of 0.298, precision of 0.281, recall of 0.316, and decision threshold of 0.103.
-* **Update:** I'm currently in the process of selecting additional features and experimenting with NNs/CNNs/RNNs and text embeddings. I will revise this analysis based on my updated findings.
-
 
 ## Description
 
