@@ -11,9 +11,9 @@
 
 ## Overview (TL;DR)
 
-●	Using natural language processing techniques and supervised learning models such as logistic regression, random forest, gradient boosting, and Naive-Bayes classification, I predict whether or not user comments will get removed from the r/worldnews subreddit for the month of January 2019. 
-●	The model that yields the highest F1 score for the removed comments class is Random Forest using bigrams and no undersampling, with an F1 score of 0.203, precision of 0.481, and recall of 0.129. These results show improvement over baseline F1, precision, and recall scores of 0.029.
-●	After maximizing for F1 scores across a range of decision thresholds, the model that yields the highest F1 score is Logistic Regression using bigrams and no undersampling, with an F1 score of 0.298, precision of 0.281, recall of 0.316, and decision threshold of 0.103.
+*	Using natural language processing techniques and supervised learning models such as logistic regression, random forest, gradient boosting, and Naive-Bayes classification, I predict whether or not user comments will get removed from the r/worldnews subreddit for the month of January 2019. 
+*	The model that yields the highest F1 score for the removed comments class is Random Forest using bigrams and no undersampling, with an F1 score of 0.203, precision of 0.481, and recall of 0.129. These results show improvement over baseline F1, precision, and recall scores of 0.029.
+*	After maximizing for F1 scores across a range of decision thresholds, the model that yields the highest F1 score is Logistic Regression using bigrams and no undersampling, with an F1 score of 0.298, precision of 0.281, recall of 0.316, and decision threshold of 0.103.
 
 
 ## Description
