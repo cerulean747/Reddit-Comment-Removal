@@ -93,7 +93,8 @@ def cross_val_scores_freq(X_train, y_train, num_folds, model, ngrams, nontext=Fa
         d[key] = val  
     for key,val in zip(w_keys,w_vals):
         d[key] = val 
-    return d
+    return d,model
+
 
 
 # Tune precision-recall tradeoff to maximize F1 scores 
@@ -208,3 +209,18 @@ def model_thresh_freq(X_train, y_train, num_folds, model, ngrams,nontext=False,u
         d[key] = val
         
     return d,thresholds,f1_neg_avg,f1_pos_avg,f1_w_avg 
+
+def plot_confusion_matrix(test_labels, predicted_labels):
+    confusion = confusion_matrix(test_labels, predicted_labels)
+
+    fig = plt.figure(figsize=(8, 6))
+    ax = fig.add_subplot(111)
+    comma_fmt = FuncFormatter(lambda x, p: format(int(x), ','))
+    sns.heatmap(cm/np.sum(cm), annot=True, 
+                fmt='.3%', cmap='Blues',cbar_kws={"format": comma_fmt})
+    ax.set_xticklabels(["Intact", "Removed"])
+    ax.set_yticklabels(["Intact", "Removed"])
+    ax.set_xlabel("Predicted Labels")
+    ax.set_ylabel("True Labels")
+    plt.show()
+    return
