@@ -89,7 +89,7 @@ I also investigate how attributes like word/character length and scores differ b
 
 <img src="imgs/word_length.png" width = "450"/>      <img src="imgs/char_length.png" width = "450"/>       <img src="imgs/score.png" width = "450"/>
 
-Lastly, I take a look at how my features correlate with one another. Although the running proportion of removed to total comment variables by author and date are highly correlated with the "Removed" target variable, including these in the model would introduce data leakage. The best alternative is to include the **previous** proportion of removed comments for each user and posting date. My final feature selection includes the first- through fifth-level responses of removed comments, number and proportion of previously removed comments by user and posting date, and number of previous comments by user and posting date.
+Lastly, I look at how my features correlate with one another. Although the running proportion of removed to total comment variables by author and date are highly correlated with the "Removed" target variable, including these in the model would introduce data leakage. The best alternative is to include the **previous** proportion of removed comments for each user and posting date. My final feature selection includes the first- through fifth-level responses of removed comments, number and proportion of previously removed comments by user and posting date, and number of previous comments by user and posting date.
 
 <img src="imgs/correlation_matrix.png" width = "450"/>
 
@@ -103,7 +103,7 @@ For 1), I use stratified k-fold cross validation on the training dataset (from a
 
 I use five models, including a baseline dummy classifier, logistic regression, random forest, gradient boosting, and Naïve-Bayes. My baseline dummy classifier generates predictions using probabilities based on the training set’s class distribution.
 
-For 2), I use a word embedding approach. Word embeddings can capture contextual meanings of words by capturing relationships between words. These words are transformed into numerical vectors, which are learned in such a way that words with similar meanings will also have similar representation in the vector space. This context is not captured by bag-of-words models. I use both a default word embedding layer as well as a set of embeddings pretrained on Wikipedia: https://wikipedia2vec.github.io/wikipedia2vec/intro/ 
+For 2), I use a word embedding approach. Word embeddings can capture contextual meanings of words by capturing relationships between words. These words are transformed into numerical vectors, which are learned in such a way that words with similar meanings will also have similar representation in the vector space. This context is not captured by bag-of-words models. I use both a default word embedding layer used in Keras as well as a set of embeddings pretrained on Wikipedia: https://wikipedia2vec.github.io/wikipedia2vec/intro/ 
 
 Based on the pre-trained Wikipedia embeddings, we can see what some of the most similar words to the most "important" words in our corpus are, using cosine similarity.
 
@@ -139,7 +139,7 @@ I then incorporate non-textual features into my models. The model that yields th
 
 ### Embedding Framework
 
-My embedding-based modeling results compare performance using neural networks vs. convolutional networks, and default word embeddings vs. Wikipedia pretrained embeddings.
+My embedding-based modeling results compare performance using neural networks vs. convolutional networks, and default Keras word embeddings vs. Wikipedia pretrained embeddings.
 
 <img src="imgs/weighted_f1_nn_results.png" width = "475"/>
 
@@ -147,9 +147,18 @@ Using just text features, my best model is a CNN using a pretrained embedding la
 
 Using both text and non-text features, my best model is also a CNN using a pretrained embedding layer, where weighted F1 is 0.971, and F1 for the removed comments class is 0.485. Compared to my "best" TF-IDF model using text and non-text features (logistic regression using unigrams), weighted F1 scores remained about the same, and F1 scores for the removed comments class increased by 9.2%. 
 
-To confirm my results, I calculated confusion matrices comparing my best TF-IDF and embedding models on the test dataset (top: Logistic Regression using unigrams, bottom: CNN using a pretrained embedding layer)
+To confirm my results, I calculated confusion matrices comparing my a dummy classifier and my best TF-IDF and embedding models on the test dataset (top: Dummy Classifier,  middle: Logistic Regression using unigrams, bottom: CNN using a pretrained embedding layer)
 
-<img src="imgs/cnn_pretr_emb_nontext.png" width = "475"/>   
+Dummy Classifier
+
+<img src="dummy_cf.png" width = "475"/>
+
+Logistic Regression Using Unigrams
+
+<img src="imgs/cnn_pretr_emb_nontext.png" width = "475"/>
+
+CNN Using Pretrained Embeddings
+
 <img src="imgs/lr_pretr_emb_nontext_cf.png" width = "475"/>
 
 The proportion of true positives is higher for CNN as compared to Logistic Regression, even though true negatives are slightly lower. This implies that my CNN model more accurately identifies comments to be removed.
