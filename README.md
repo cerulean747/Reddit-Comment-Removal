@@ -1,10 +1,8 @@
 # Predicting Comment Removal from Reddit r/worldnews: January 2019
 
 ## Overview (tl;dr)
-*	Using natural language processing techniques and supervised learning models such as logistic regression, random forest, gradient boosting, and Naive-Bayes classification, I predict whether or not user comments will get removed from the r/worldnews subreddit for the month of January 2019. 
-*	Random Forest using bigrams and no undersampling yields the highest F1, with a score of 0.203, precision of 0.481, and recall of 0.129. These results show improvement over baseline F1, precision, and recall scores of 0.029.
-*	After maximizing for F1 scores across a range of decision thresholds, logistic regression yields the highest F1 using bigrams and no undersampling, with a score of 0.298, precision of 0.281, recall of 0.316, and decision threshold of 0.103.
-* **Update:** I'm currently in the process of selecting additional features and experimenting with NNs/CNNs/RNNs and text embeddings. I will revise this analysis based on my updated findings.
+*	Using natural language processing techniques and supervised and unsupervised learning models, I predict whether or not user comments will get removed from the r/worldnews subreddit for the month of January 2019. 
+*	My results imply that in addition to individual word features, the contextual meaning behind words and non-textual features also play an important role in predicting comment removal. 
 
 
 ### Table of Contents  
@@ -19,12 +17,11 @@
 
 Reddit is a website that aggregates news and social content and provides a platform for discussion. Although basically any topic can be discussed on Reddit, the site is heavily moderated. Users report offensive and abusive comments or comments that otherwise violate subreddit rules to moderators, who then review these comments and decide whether or not to remove them. 
 
-This project predicts whether or not comments from Reddit’s r/worldnews subreddit will be removed, in order to potentially reduce the amount of user and moderator work. In particular, I investigate whether or not textual and non-textual features from the comments themselves are predictive of comment removal. I use natural language processing techniques and models such as logistic regression, random forest, gradient boosting, and Naive-Bayes classification; and neural network models such as simple neural networks and convolutional neural networks (CNNs).  
+This project predicts whether or not comments from Reddit’s r/worldnews subreddit will be removed, in order to potentially reduce the amount of user and moderator work. In particular, I investigate whether or not textual and non-textual features from the comments themselves are predictive of comment removal. I use natural language processing techniques and models such as logistic regression, random forest, and gradient boosting; and neural network models such as simple neural networks and convolutional neural networks (CNNs).  
 
 
 ## Data Preparation
 
-My dataset comprises 826,163 total comments, of which 24,952 (3%) are removed by moderators. I discuss different techniques I use to address the class imbalance later on in the modeling phase. 
 
 <img src="imgs/removed_class_imbalance.png" width = "450"/>
 
@@ -37,6 +34,8 @@ I then merged these comments with intact ones and removed unnecessary columns. N
 Lastly, I created my target variable as an indicator showing whether or not a comment has been removed (1 = removed, 0 = intact). 
 
 After data cleaning, my final dataset comprises 778,592 total comments, of which 23,885 (3%) are removed by moderators. I discuss different techniques I use to address this class imbalance later on in the modeling phase.
+
+<img src="imgs/class_imbalance.png" width = "450"/>
 
 My text featurization pipeline is as follows:
 1) Normalize text to convert comments into more uniform sequences
@@ -69,7 +68,7 @@ In terms of word importance, intact and removed comments share some words in com
 
 I next investigate the non-textual features in my dataset. A snapshot is below:
 
-<img src="imgs/snapshot.png" width = "450"/>
+<img src="imgs/snapshot.png" width = "600"/>
 
 I first investigate the number and proportion of removed comments at the user-level. Most users post comments that don't get removed, and only 13,377 (7.8%) of 170,652 users post at least one removed comment. However, out of these 13,377 users, 3,878 users (28%) are "repeat offenders", i.e., they posted more than one removed comment.
 
@@ -134,7 +133,7 @@ I first investigate the effect of purely textual features. The model that yields
 
 <img src="imgs/Bigrams%20%26%20No%20Undersampling.png" width = "475"/>          <img src="imgs/Bigrams%20%26%20Undersampling.png" width = "475"/>  
 
-I then incorporate non-textual features into my models. The model that yields the highest weighted F1 score is Logistic Regression using unigrams and no undersampling, with an F1 score of 0.971, precision of 0.972, and recall of 0.976. The results show a 1.1% increase over the best model using only textual features (Random Forest using bigrams and no undersampling, with an F1 score of .960). However, the F1 score for the removed comments class is 0.444, a more than two-fold increase compared to the best model without textual features (Random Forest with an F1 of 0.201). It looks like incorporating textual features increased overall predictive power slightly, but drastically improved how well the model can predict whether or not a comment gets removed.
+I then incorporate non-textual features into my models. The model that yields the highest weighted F1 score is Logistic Regression using unigrams and no undersampling, with an F1 score of 0.971, precision of 0.972, and recall of 0.976. The results show a 1.1% increase over the best model using only textual features (Random Forest using bigrams and no undersampling, with an F1 score of .960). However, the F1 score for the removed comments class is 0.444, a more than two-fold increase compared to the best model without textual features (Random Forest with an F1 of 0.201). It looks like incorporating textual features increased overall predictive power slightly, but drastically improved how well the model can predict comment removal (positive class).
 
 <img src="imgs/Unigrams & No Undersampling: Text & Non-Text.png" width = "475"/>         <img src="imgs/Unigrams & Undersampling: Text & Non-Text.png" width = "475"/>   
 
@@ -154,9 +153,9 @@ Using both text and non-text features, my best model is also a CNN using a pretr
 To confirm my results, I calculated confusion matrices comparing my best TF-IDF and embedding models on the test dataset (top: Logistic Regression using unigrams, bottom: CNN using a pretrained embedding layer)
 
 <img src="imgs/cnn_pretr_emb_nontext.png" width = "475"/>   
-<img src="lr_pretr_emb_nontext_cf.png" width = "475"/>
+<img src="imgs/lr_pretr_emb_nontext_cf.png" width = "475"/>
 
-The proportion of true positives is higher for CNN as compared to Logistic Regression, even though true negatives are slightly lower.
+The proportion of true positives is higher for CNN as compared to Logistic Regression, even though true negatives are slightly lower. This implies that my CNN model more accurately identifies comments to be removed.
 
 ## Summary
 
@@ -173,9 +172,10 @@ Additionally, there might still be a lingering residual component that limits pr
 
 Potential future directions include the following: 
 
-* Fine tune hyperparameters (learning rate, layers, loss functions) and precision-recall tradeoff for neural network models; experiment with higher-order n-grams and sampling methods
+* Fine tune hyperparameters (learning rate, optimizer, number of layers, loss functions) and precision-recall tradeoff for neural network models
+* Experiment with higher-order n-grams and sampling methods
 * Experiment with more models (LSTM, RNN) and implement word embeddings in existing models
-* Experiment with other types of pretrained embeddings (Google Word2Vec, GloVe, fasttext)
+* Experiment with other types of pretrained embeddings (Google Word2Vec, GloVe, fasttext) and/or character-level embeddings
 * Find historical user account metadata if available 
 
 
