@@ -61,9 +61,11 @@ In terms of word importance, intact and removed comments share some words in com
 
 **Intact Comments**
 
-<img src="imgs/intact_wordcloud.png" width = "450"/>           
+<img src="imgs/intact_wordcloud.png" width = "450"/>
+
 
 **Removed Comments**
+
 <img src="imgs/removed_wordcloud.png" width = "450"/>
 
 ### Non-textual Features
@@ -111,13 +113,13 @@ I use five models, including a baseline dummy classifier, logistic regression, r
 
 For 2), I use a word embedding approach. Word embeddings can capture contextual meanings of words by capturing relationships between words. These words are transformed into numerical vectors, which are learned in such a way that words with similar meanings will also have similar representation in the vector space. This context is not captured by bag-of-words models. I use both a default word embedding layer used in Keras as well as a set of embeddings pretrained on Wikipedia: https://wikipedia2vec.github.io/wikipedia2vec/intro/ 
 
-Based on the pre-trained Wikipedia embeddings, we can see what some of the most similar words to the most "important" words in our corpus are, using cosine similarity.
+Based on the pre-trained Wikipedia embeddings, we can see what some of the most similar words to the most "important" words in our corpus are, using Word2Vec cosine similarity.
 
 <img src="imgs/think_sim.png" width = "450"/>     <img src="imgs/people_sim.png" width = "450"/>    
 
 <img src="imgs/know_sim.png" width = "450"/>    <img src="imgs/good_sim.png" width = "450"/>
 
-Although there are a few interesting ones, most of these words seem semantically similar to their respective root words.
+Although there are a few interesting ones, most of these words are semantically similar to their respective root words. Therefore these vectors seem to capture the contextual meaning of these words fairly well. 
 
 For my models, I use both simple neural networks and convolutional networks, and incorporate word embeddings as an additional layer in these models. For each of these models, I use 1 inner or convolutional layer, binary crossentropy loss, twenty epochs, Adam optimizer, and default parameters. 
 
@@ -136,7 +138,7 @@ I first investigate the effect of purely textual features. The model that yields
 
 <img src="imgs/Bigrams%20%26%20No%20Undersampling.png" width = "475"/>          <img src="imgs/Bigrams%20%26%20Undersampling.png" width = "475"/>  
 
-I then incorporate non-textual features into my models. The model that yields the highest weighted F1 score is Logistic Regression using unigrams and no undersampling, with an F1 score of 0.971, precision of 0.972, and recall of 0.976. The results show a 1.1% increase over the best model using only textual features (Random Forest using bigrams and no undersampling, with an F1 score of .960). However, the F1 score for the removed comments class is 0.444, a more than two-fold increase compared to the best model without textual features (Random Forest with an F1 of 0.201). It looks like incorporating textual features increased overall predictive power slightly, but drastically improved how well the model can predict comment removal (positive class).
+I then incorporate non-textual features into my models. The model that yields the highest weighted F1 score is Logistic Regression using unigrams and no undersampling, with an F1 score of 0.971, precision of 0.972, and recall of 0.976. The results show a 1.1% increase over the best model using only textual features (Random Forest using bigrams and no undersampling, with an F1 score of .960). However, the F1 score for the removed comments class is 0.444, a more than two-fold increase compared to the best model without textual features (Random Forest with an F1 of 0.201). It looks like incorporating textual features increased overall predictive power slightly, but drastically improved how well the model can identify comments to be removed.
 
 <img src="imgs/Unigrams & No Undersampling: Text & Non-Text.png" width = "475"/>         <img src="imgs/Unigrams & Undersampling: Text & Non-Text.png" width = "475"/>   
 
@@ -153,7 +155,7 @@ Using just text features, my best model is a CNN using a pretrained embedding la
 
 Using both text and non-text features, my best model is also a CNN using a pretrained embedding layer, where weighted F1 is 0.971, and F1 for the removed comments class is 0.485. Compared to my "best" TF-IDF model using text and non-text features (logistic regression using unigrams), weighted F1 scores remained about the same, and F1 scores for the removed comments class increased by 9.2%. 
 
-To confirm my results, I calculated confusion matrices comparing my a dummy classifier and my best TF-IDF and embedding models on the test dataset (top: Dummy Classifier,  middle: Logistic Regression using unigrams, bottom: CNN using a pretrained embedding layer)
+To confirm my results, I calculated confusion matrices comparing a dummy classifier and my best TF-IDF and embedding models on the test dataset (top: Dummy Classifier,  middle: Logistic Regression using unigrams, bottom: CNN using a pretrained embedding layer)
 
 **Dummy Classifier**
 
@@ -178,7 +180,7 @@ My results imply the following:
 2) Adding nontextual features such as user information and comment nesting structure increased overall predictive power, especially for the positive (removed comments) class 
 3) Adding some context to words through the use of pretrained word embeddings and more complex neural network models also increased overall predictive power, especially for the positive (removed comments) class. 
 
-Additionally, there might still be a lingering residual component that limits predictive power on the positive class. First off, there may be variation in what users and moderators consider offensive, and this subjectivity may also vary from subreddit to subreddit. While other users may not be as offended, a few users might get especially triggered by a given comment and report it multiple times, which may heighten the overall likelihood of removing that comment. Additionally, comments may be offensive in certain contexts but not others. A comment like "Perhaps finally some justice" isn't directly offensive taken out of context, but taken as a response to another comment or post, the underlying meaning may be completely different. 
+Additionally, there might still be a lingering residual component that limits predictive power on the positive class. First off, there can be variation in what users and moderators consider offensive, and this subjectivity may also vary from subreddit to subreddit. While other users may not be as offended, a few users might get especially triggered by a given comment and report it multiple times, which may heighten the overall likelihood of removing that comment. Additionally, comments may be offensive in certain contexts but not others. A comment like "Perhaps finally some justice" isn't directly offensive taken out of context, but taken as a response to another comment or post, the underlying meaning may be completely different. 
 
 ### Future Directions
 
