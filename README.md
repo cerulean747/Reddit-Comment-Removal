@@ -41,7 +41,7 @@ My text featurization pipeline is as follows:
 4) Create bag of words term frequency-inverse document frequency (tf-idf) matrices.
 
 
-## Exploratory Data Analysis
+## Exploratory Data Analysis & Feature Engineering
 
 ### Textual Features
 
