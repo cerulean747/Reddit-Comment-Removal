@@ -99,7 +99,7 @@ I also investigate how attributes like word/character length and scores differ b
 
 Lastly, I look at how my features correlate with one another. Although the running proportion of removed to total comment variables by author and date are highly correlated with the "Removed" target variable, including these in the model would introduce data leakage. The best alternative is to include the **previous** proportion of removed comments for each user and posting date. My final feature selection includes the first- through fifth-level responses of removed comments, number and proportion of previously removed comments by user and posting date, and number of previous comments by user and posting date.
 
-<img src="imgs/correlation_matrix.png" width = "450"/>
+<img src="imgs/correlation_matrix.png" width = "600"/>
 
 ## Modeling Approach
 
@@ -119,7 +119,7 @@ Based on the pre-trained Wikipedia embeddings, we can see what some of the most 
 
 <img src="imgs/know_sim.png" width = "450"/>    <img src="imgs/good_sim.png" width = "450"/>
 
-Although there are a few interesting ones, most of these words are semantically similar to their respective root words. Therefore these vectors seem to capture the contextual meaning of these words fairly well. 
+Although there are a few interesting ones, most of these words are semantically similar to their respective neighboring words. These vectors seem to capture the contextual meaning behind these words fairly well. 
 
 For my models, I use both simple neural networks and convolutional networks, and incorporate word embeddings as an additional layer in these models. For each of these models, I use 1 inner or convolutional layer, binary crossentropy loss, twenty epochs, Adam optimizer, and default parameters. 
 
