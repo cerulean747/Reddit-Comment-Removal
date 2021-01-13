@@ -2,7 +2,7 @@
 
 ## Overview (tl;dr)
 *	Using natural language processing techniques and supervised and unsupervised learning models, I predict whether or not user comments will get removed from the r/worldnews subreddit for the month of January 2019. 
-*	My results imply that in addition to individual word features, the contextual meaning behind words and non-textual features also play an important role in predicting comment removal. 
+*	My results imply that in addition to individual word features, the contextual meanings behind words and non-textual features also play an important role in predicting comment removal. 
 
 
 ### Table of Contents  
@@ -21,9 +21,6 @@ This project predicts whether or not comments from Reddit’s r/worldnews subred
 
 
 ## Data Preparation
-
-
-<img src="imgs/removed_class_imbalance.png" width = "450"/>
 
 My data collection process involves first querying both removed and intact comments from r/worldnews for the month of January 2019 from Google BigQuery. In order to restore specifically moderator-removed comments (marked with "[removed]"), I next retrieved the original body text for these comments through Reddit's pushshift.io API. 
 
@@ -68,7 +65,7 @@ In terms of word importance, intact and removed comments share some words in com
 
 I next investigate the non-textual features in my dataset. A snapshot is below:
 
-<img src="imgs/snapshot.png" width = "600"/>
+<img src="imgs/snapshot.png" width = "1000"/>
 
 I first investigate the number and proportion of removed comments at the user-level. Most users post comments that don't get removed, and only 13,377 (7.8%) of 170,652 users post at least one removed comment. However, out of these 13,377 users, 3,878 users (28%) are "repeat offenders", i.e., they posted more than one removed comment.
 
@@ -90,7 +87,7 @@ The percentage of comment removal decreases as we move through lower-level respo
 
 I also investigate how attributes like word/character length and scores differ between intact and removed comments. Based on the below graphs, there aren’t significant differences between the two distributions. 
 
-<img src="imgs/word_length.png" width = "450"/>      <img src="char_length.png" width = "450"/>       <img src="score.png" width = "450"/>
+<img src="imgs/word_length.png" width = "450"/>      <img src="imgs/char_length.png" width = "450"/>       <img src="imgs/score.png" width = "450"/>
 
 Lastly, I take a look at how my features correlate with one another. Although the running proportion of removed to total comment variables by author and date are highly correlated with the "Removed" target variable, including these in the model would introduce data leakage. The best alternative is to include the **previous** proportion of removed comments for each user and posting date. My final feature selection includes the first- through fifth-level responses of removed comments, number and proportion of previously removed comments by user and posting date, and number of previous comments by user and posting date.
 
