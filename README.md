@@ -59,7 +59,12 @@ The first two comments above can be easily construed as insulting. The last two,
 
 In terms of word importance, intact and removed comments share some words in common, such as “people”, "think", and "country". However, removed comments feature much more profanity and prejudice-oriented words compared to intact comments, as shown in the wordclouds below.
 
-<img src="imgs/intact_wordcloud.png" width = "450"/>           <img src="imgs/removed_wordcloud.png" width = "450"/>
+**Intact Comments**
+
+<img src="imgs/intact_wordcloud.png" width = "450"/>           
+
+**Removed Comments**
+<img src="imgs/removed_wordcloud.png" width = "450"/>
 
 ### Non-textual Features
 
@@ -68,6 +73,7 @@ I next investigate the non-textual features in my dataset. A snapshot is below:
 <img src="imgs/snapshot.png" width = "1000"/>
 
 I first investigate the number and proportion of removed comments at the user-level. Most users post comments that don't get removed, and only 13,377 (7.8%) of 170,652 users post at least one removed comment. However, out of these 13,377 users, 3,878 users (28%) are "repeat offenders", i.e., they posted more than one removed comment.
+
 
 <img src="imgs/distribution_rem_comm_users.png" width = "450"/>     <img src="imgs/distr_rem_comm_rep_off.png" width = "450"/>
 
@@ -149,15 +155,15 @@ Using both text and non-text features, my best model is also a CNN using a pretr
 
 To confirm my results, I calculated confusion matrices comparing my a dummy classifier and my best TF-IDF and embedding models on the test dataset (top: Dummy Classifier,  middle: Logistic Regression using unigrams, bottom: CNN using a pretrained embedding layer)
 
-Dummy Classifier
+**Dummy Classifier**
 
-<img src="dummy_cf.png" width = "475"/>
+<img src="imgs/dummy_cf.png" width = "475"/>
 
-Logistic Regression Using Unigrams
+**Logistic Regression Using Unigrams**
 
 <img src="imgs/cnn_pretr_emb_nontext.png" width = "475"/>
 
-CNN Using Pretrained Embeddings
+**CNN Using Pretrained Embeddings**
 
 <img src="imgs/lr_pretr_emb_nontext_cf.png" width = "475"/>
 
