@@ -8,7 +8,7 @@
 ### Table of Contents  
 [Description](#description)  
 [Data Preparation](#data-preparation)   
-[EDA & Feature Engineering](#eda-feature-engineering)<br/>
+[EDA & Feature Engineering](#eda-&-feature-engineering)<br/>
 [Modeling Approach](#modeling-approach)<br/>
 [Modeling Results](#modeling-results)<br/>
 [Summary](#summary)
