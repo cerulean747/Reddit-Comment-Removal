@@ -21,7 +21,7 @@ This project predicts whether or not comments from Reddit’s r/worldnews subred
 
 My workflow process is outlined below: 
 
-<img src="/imgs/workflow.png" width = "475"/>
+<img src="/imgs/workflow.png" width = "575"/>
 
 
 I first retrieve and clean my data, perform exploratory data analysis (EDA), use EDA to inform my feature engineering, and then perform modeling comparing a term frequency-inverse frequency (tf-idf) vs. word embeddings approach. In addition to text-only features, I also suspect that other factors may help predict comment removal. Therefore for each of these models I investigate the effect of using comment text only vs. also adding engineered non-text features. 
@@ -121,7 +121,7 @@ I use four models, including a baseline dummy classifier, logistic regression, r
 ### Word Embeddings
 Word embeddings transform words into numerical vectors so that words with similar meaning also have similar representation in the vector space. In doing so, word embeddings capture the contextual meaning underlying these words. This context is not captured by tf-idf or other bag-of-words models. 
 
-<img src="imgs/EmbeddingLayer.png" width = "450"/>
+<img src="imgs/EmbeddingLayer.png" width = "550"/>
 
 For this approach I use a set of word embeddings pretrained on Wikipedia articles: https://wikipedia2vec.github.io/wikipedia2vec/intro/ Based on the pre-trained embeddings, we can see what some of the most similar words to the most "important" words in our corpus are, using Word2Vec cosine similarity.
 
