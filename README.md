@@ -121,7 +121,7 @@ Word embeddings transform words into numerical vectors so that words with simila
 
 <img src="imgs/EmbeddingLayer.png" width = "550"/>
 
-For this approach I use a set of word embeddings pretrained on Wikipedia articles: https://wikipedia2vec.github.io/wikipedia2vec/intro/ Based on the pre-trained embeddings, we can see what some of the most similar words to the most "important" words in our corpus are, using Word2Vec cosine similarity.
+For this approach I use a set of word embeddings pretrained on Wikipedia articles: https://wikipedia2vec.github.io/wikipedia2vec/intro/ Based on the pre-trained embeddings, we can see what some of the most similar words to the most "important" words in our corpus are, using cosine similarity.
 
 <img src="imgs/think_sim.png" width = "450"/>     <img src="imgs/people_sim.png" width = "450"/>    
 
@@ -180,7 +180,7 @@ However, even after incorporating additional features there may still be a linge
 Potential future directions include the following: 
 
 * Fine tune hyperparameters (learning rate, optimizer, number of layers, loss functions) and precision-recall tradeoff for CNN models.
-* Experiment with more sampling methods to further account for class imbalance.
+* Experiment with sampling methods to further account for class imbalance.
 * Experiment with other models (LSTM, RNN) and implement word embeddings in existing models (logistic regression, random forest).
 * Experiment with other types of pretrained embeddings (Google Word2Vec, GloVe, fasttext) and/or character-level embeddings.
 * Find historical user account metadata if available.
