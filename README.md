@@ -87,9 +87,9 @@ Based on the below graph, 45% of first-level responses to removed comments are a
 
 The percentage of comment removal decreases as we move through lower-level responses, possibly due to decreased visibility.  
 
-I next investigate the number and proportion of removed comments at the user-level. Unsurprisingly, most users post comments that aren't removed, and only 13,376 (7.8%) of 170,652 users post at least one removed comment. However, out of these 13,377 users, 3,877 users (29%) are "repeat offenders", i.e., they posted more than one removed comment. 
+I next investigate the number and proportion of removed comments at the user-level. Unsurprisingly, most users post comments that aren't removed, and only 13,376 (7.8%) of 170,652 users post at least one removed comment. However, out of these 13,376 users, 3,877 users (29%) are "repeat offenders", i.e., they posted more than one removed comment. 
 
-<img src="imgs/distribution_rem_comm_users.png" width = "450"/>     <img src="imgs/cdf_users_removed.png" width = "450"/>
+<img src="imgs/distribution_rem_comm_users.png" width = "450"/>     <img src="imgs/cdf_users_removed.png" width = "500"/>
 
 Do moderators punish these "repeat offenders"? That is, if a given user has a historically high rate of comment removal, then are moderators more inclined to remove future comments from that user? To answer this question, I calculate the number and proportion of previously removed and total comments for each user and comment. 
 
