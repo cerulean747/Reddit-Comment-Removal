@@ -140,7 +140,7 @@ In terms of evaluation metrics, it’s not clear whether false positives or fals
 
 My tf-idf-based modeling results (shown below) compare performance using no undersampling with undersampling, and unigrams with bigrams. 
 
-I first investigate the effect of purely textual features. The model that yields the highest weighted F1 score is Random Forest using bigrams and no undersampling, with an F1 of 0.960, precision of 0.958, and recall of 0.969. These results show a 2% improvement over baseline F1, precision, and recall scores of 0.94. The F1 score for the positive (removed comments) class is 0.201, which is a six-fold increase over baseline F1, precision, and recall scores of 0.028. 
+I first investigate the effect of purely textual features. The model that yields the highest weighted F1 score is Random Forest using bigrams and no undersampling, with an F1 of 0.960, precision of 0.958, and recall of 0.969. These results show a 2% improvement over baseline F1, precision, and recall scores of 0.94. The F1 score for the positive (removed comments) class is 0.201, which is a six-fold increase over baseline F1, precision, and recall scores of 0.028. Although these models identify which comments will stay on r/worldnews very well, they identify which comments are likely to be removed less well.
 
 <img src="imgs/Unigrams%20%26%20No%20Undersampling.png" width = "475"/>         <img src="imgs/Unigrams%20%26%20Undersampling.png" width = "475"/>   
 
