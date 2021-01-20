@@ -41,7 +41,7 @@ My text featurization pipeline is as follows:
 4) Create bag of words term frequency-inverse document frequency (tf-idf) matrices.
 
 
-## Exploratory Data Analysis
+## Exploratory Data Analysis & Feature Engineering
 
 ### Textual Features
 
@@ -99,7 +99,7 @@ I also investigate how attributes like word/character length and scores differ b
 
 Lastly, I look at how my features correlate with one another. Although the running proportion of removed to total comment variables by author and date are highly correlated with the "Removed" target variable, including these in the model would introduce data leakage. The best alternative is to include the **previous** proportion of removed comments for each user and posting date. My final feature selection includes the first- through fifth-level responses of removed comments, number and proportion of previously removed comments by user and posting date, and number of previous comments by user and posting date.
 
-<img src="imgs/correlation_matrix.png" width = "450"/>
+<img src="imgs/correlation_matrix.png" width = "600"/>
 
 ## Modeling Approach
 
@@ -119,7 +119,7 @@ Based on the pre-trained Wikipedia embeddings, we can see what some of the most 
 
 <img src="imgs/know_sim.png" width = "450"/>    <img src="imgs/good_sim.png" width = "450"/>
 
-Although there are a few interesting ones, most of these words are semantically similar to their respective root words. Therefore these vectors seem to capture the contextual meaning of these words fairly well. 
+Although there are a few interesting ones, most of these words are semantically similar to their respective neighboring words. These vectors seem to capture the contextual meaning behind these words fairly well. 
 
 For my models, I use both simple neural networks and convolutional networks, and incorporate word embeddings as an additional layer in these models. For each of these models, I use 1 inner or convolutional layer, binary crossentropy loss, twenty epochs, Adam optimizer, and default parameters. 
 
@@ -138,7 +138,7 @@ I first investigate the effect of purely textual features. The model that yields
 
 <img src="imgs/Bigrams%20%26%20No%20Undersampling.png" width = "475"/>          <img src="imgs/Bigrams%20%26%20Undersampling.png" width = "475"/>  
 
-I then incorporate non-textual features into my models. The model that yields the highest weighted F1 score is Logistic Regression using unigrams and no undersampling, with an F1 score of 0.971, precision of 0.972, and recall of 0.976. The results show a 1.1% increase over the best model using only textual features (Random Forest using bigrams and no undersampling, with an F1 score of .960). However, the F1 score for the removed comments class is 0.444, a more than two-fold increase compared to the best model without textual features (Random Forest with an F1 of 0.201). It looks like incorporating textual features increased overall predictive power slightly, but drastically improved how well the model can identify comments to be removed.
+I then incorporate non-textual features into my models. The model that yields the highest weighted F1 score is Logistic Regression using unigrams and no undersampling, with an F1 score of 0.971, precision of 0.972, and recall of 0.976. The results show a 1.1% increase over the best model using only textual features (Random Forest using bigrams and no undersampling, with an F1 score of .960). However, the F1 score for the removed comments class is 0.444, a more than two-fold increase compared to the best model without textual features (Random Forest with an F1 of 0.201). It looks like incorporating textual features increased overall predictive power slightly, but drastically improved how well the model can identify comments that should get removed.
 
 <img src="imgs/Unigrams & No Undersampling: Text & Non-Text.png" width = "475"/>         <img src="imgs/Unigrams & Undersampling: Text & Non-Text.png" width = "475"/>   
 
@@ -163,13 +163,13 @@ To confirm my results, I calculated confusion matrices comparing a dummy classif
 
 **Logistic Regression Using Unigrams**
 
-<img src="imgs/cnn_pretr_emb_nontext.png" width = "475"/>
+<img src="imgs/lr_pretr_emb_nontext_cf.png" width = "475"/>
 
 **CNN Using Pretrained Embeddings**
 
-<img src="imgs/lr_pretr_emb_nontext_cf.png" width = "475"/>
+<img src="imgs/cnn_pretr_emb_nontext.png" width = "475"/>
 
-The proportion of true positives is higher for CNN as compared to Logistic Regression, even though true negatives are slightly lower. This implies that my CNN model more accurately identifies comments to be removed.
+The proportion of correctly identified true positives is higher for CNN as compared to Logistic Regression, even though true negatives are slightly lower. This implies that my CNN model more accurately identifies comments to be removed than Logistic Regression.
 
 ## Summary
 
@@ -178,19 +178,21 @@ The proportion of true positives is higher for CNN as compared to Logistic Regre
 My results imply the following: 
 1) Generally my models predict which comments will stay on r/worldnews very well, and predicts which comments will get removed less well.
 2) Adding nontextual features such as user information and comment nesting structure increased overall predictive power, especially for the positive (removed comments) class 
-3) Adding some context to words through the use of pretrained word embeddings and more complex neural network models also increased overall predictive power, especially for the positive (removed comments) class. 
+3) Adding some context to words through the use of pretrained word embeddings and more complex neural network models also increased overall predictive power, including the positive (removed comments) class. 
 
-Additionally, there might still be a lingering residual component that limits predictive power on the positive class. First off, there can be variation in what users and moderators consider offensive, and this subjectivity may also vary from subreddit to subreddit. While other users may not be as offended, a few users might get especially triggered by a given comment and report it multiple times, which may heighten the overall likelihood of removing that comment. Additionally, comments may be offensive in certain contexts but not others. A comment like "Perhaps finally some justice" isn't directly offensive taken out of context, but taken as a response to another comment or post, the underlying meaning may be completely different. 
+The largest incremental increase in predictive power comes from the addition of nontextual features, with weighted F1 scores for the positive class more than doubling in some cases. Incorporating the contextual meaning behind words results in a relatively smaller increase in predictive power. More information related to user accounts (date of account creation, verified email status, comment karma, etc.) from the January 2019 timeframe may be helpful in further boosting predictive power.
+
+However, even after incorporating additional features there may still be a lingering residual component that limits predictive power for the positive class. First off, there can be variation in what users and moderators consider offensive, and this subjectivity may also vary from subreddit to subreddit. While other users may not be as offended, a few users might get especially triggered by a given comment and report it multiple times, which may heighten the overall likelihood of removing that comment. Additionally, comments may be offensive in certain contexts but not others. A comment like "Perhaps finally some justice" isn't directly offensive taken out of context, but taken as a response to another comment or post, the underlying meaning may be completely different. 
 
 ### Future Directions
 
 Potential future directions include the following: 
 
-* Fine tune hyperparameters (learning rate, optimizer, number of layers, loss functions) and precision-recall tradeoff for neural network models
-* Experiment with higher-order n-grams and sampling methods
-* Experiment with more models (LSTM, RNN) and implement word embeddings in existing models
-* Experiment with other types of pretrained embeddings (Google Word2Vec, GloVe, fasttext) and/or character-level embeddings
-* Find historical user account metadata if available 
+* Fine tune hyperparameters (learning rate, optimizer, number of layers, loss functions) and precision-recall tradeoff for neural network models.
+* Experiment with higher-order n-grams and sampling methods.
+* Experiment with other models (LSTM, RNN) and implement word embeddings in existing models (logistic regression, random forest).
+* Experiment with other types of pretrained embeddings (Google Word2Vec, GloVe, fasttext) and/or character-level embeddings.
+* Find historical user account metadata if available.
 
 
 
