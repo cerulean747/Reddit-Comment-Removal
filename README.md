@@ -161,7 +161,7 @@ My embedding-based modeling results use pretrained word embeddings on a CNN mode
 
 Using just text features yields a weighted F1 of 0.961, weighted precision of 0.958, weighted recall of 0.964, and F1 for the removed comments class of 0.304. Compared to my "best" tf-idf model using text features (random forest using bigrams), weighted F1 scores increased by 0.1% and F1 scores for removed comments increased by 51.2%. 
 
-Using both text and non-text features yields a weighted F1 of 0.971, weighted precision of 0.971, weighted recall of 0.974, and F1 for the removed comments class of 0.505. Compared to my "best" tf-idf model using both text and non-text features (logistic regression using unigrams), weighted F1 scores increased by 0.1%, and F1 scores for the removed comments class increased by 13.7%. 
+Using both text and non-text features yields the highest performance out of all models, with a weighted F1 of 0.971, weighted precision of 0.971, weighted recall of 0.974, and F1 for the removed comments class of 0.505. Compared to my "best" tf-idf model using both text and non-text features (logistic regression using unigrams), weighted F1 scores increased by 0.1%, and F1 scores for the removed comments class increased by 13.7%. Therefore, my best overall model is a CNN using a pretrained embedding layer and both text and non-text features. 
 
 
 ## Summary
@@ -170,10 +170,10 @@ Using both text and non-text features yields a weighted F1 of 0.971, weighted pr
 
 My results imply the following: 
 1) Generally my models predict which comments will stay on r/worldnews very well, and predicts which comments will get removed less well.
-2) Adding nontextual features such as user information and comment nesting structure increased overall predictive power, especially for the positive (removed comments) class 
+2) Adding nontextual features such as user information and comment nesting structure increased overall predictive power, especially for the positive (removed comments) class.
 3) Adding some context to words through the use of pretrained word embeddings and more complex neural network models also increased overall predictive power, including the positive (removed comments) class. 
 
-The largest incremental increase in predictive power comes from the addition of nontextual features, with weighted F1 scores for the positive class more than doubling in some cases. Incorporating word context results in a relatively smaller increase in predictive power. More information related to user accounts (date of account creation, verified email status, comment karma, etc.) from the January 2019 timeframe may be helpful in further boosting predictive power.
+The largest incremental increase in predictive power comes from the addition of nontextual features, with weighted F1 scores for the positive class more than doubling in some cases. This implies that comment removal relies on other factors in addition to comment offensiveness alone. Incorporating word context results in a relatively smaller increase in predictive power. More information related to user accounts (date of account creation, verified email status, comment karma, etc.) from the January 2019 timeframe may be helpful in further boosting predictive power.
 
 However, even after incorporating additional features there may still be a lingering residual component that limits predictive power for the positive class. First off, there can be variation in what users and moderators consider offensive, and this subjectivity may also vary from subreddit to subreddit. Additionally, comments may be offensive in certain contexts but not others. A comment like "Perhaps finally some justice" isn't directly offensive taken out of context, but taken as a response to another comment or post, the underlying meaning may be completely different. 
 
