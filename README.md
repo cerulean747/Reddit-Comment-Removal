@@ -8,7 +8,7 @@
 ### Table of Contents  
 [Description](#description)  
 [Data Preparation](#data-preparation)   
-[Exploratory Data Analysis](#exploratory-data-analysis)<br/>
+[EDA & Feature Engineering](#eda-feature-engineering)<br/>
 [Modeling Approach](#modeling-approach)<br/>
 [Modeling Results](#modeling-results)<br/>
 [Summary](#summary)
@@ -40,7 +40,7 @@ After data cleaning, my final dataset comprises 778,592 total comments, of which
 <img src="imgs/class_imbalance.png" width = "450"/>
 
 
-## Exploratory Data Analysis & Feature Engineering
+## EDA & Feature Engineering
 
 ### Textual Features
 
