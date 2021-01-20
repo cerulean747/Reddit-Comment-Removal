@@ -17,7 +17,7 @@
 
 Reddit is a website that aggregates news and social content and provides a platform for discussion. Although basically any topic can be discussed on Reddit, the site is heavily moderated. Users report offensive and abusive comments or comments that otherwise violate subreddit rules to moderators, who then review these comments and decide whether or not to remove them. 
 
-This project predicts whether or not comments from Reddit’s r/worldnews subreddit will be removed, in order to potentially reduce the amount of user and moderator work and create a friendlier environment. In particular, I investigate whether or not textual features from the comments themselves as well as non-textual features are predictive of comment removal. I use natural language processing techniques, classification models, and transfer learning.
+This project predicts whether or not comments from Reddit’s r/worldnews subreddit will be removed, in order to potentially reduce the amount of user and moderator work and create a friendlier environment. In particular, I investigate whether or not textual features from the comments themselves as well as non-textual features created from the rest of my dataset are predictive of comment removal. I use natural language processing techniques, classification models, and transfer learning.
 
 My workflow process is outlined below: 
 
