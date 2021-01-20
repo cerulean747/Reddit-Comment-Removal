@@ -99,7 +99,7 @@ I also investigate how attributes like word/character length and scores differ b
 
 Lastly, I look at how my non-text features correlate with one another. Although the running proportion of removed to total comment variables by author and date are highly correlated with the "Removed" target variable, including these in the model would introduce data leakage. The best alternative is to include the **previous** proportion of removed comments for each user and posting date. My final feature selection includes the first- through fifth-level responses of removed comments, number and proportion of previously removed comments by user and posting date, and number of previous comments by user and posting date.
 
-<img src="imgs/correlation_matrix.png" width = "600"/>
+<img src="imgs/correlation_matrix.png" width = "700"/>
 
 ## Modeling Approach
 
