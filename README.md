@@ -180,7 +180,7 @@ However, even after incorporating additional features there may still be a linge
 Potential future directions include the following: 
 
 * Fine tune hyperparameters (learning rate, optimizer, number of layers, loss functions) and precision-recall tradeoff for CNN models.
-* Experiment with higher-order n-grams and sampling methods.
+* Experiment with more sampling methods to further account for class imbalance.
 * Experiment with other models (LSTM, RNN) and implement word embeddings in existing models (logistic regression, random forest).
 * Experiment with other types of pretrained embeddings (Google Word2Vec, GloVe, fasttext) and/or character-level embeddings.
 * Find historical user account metadata if available.
