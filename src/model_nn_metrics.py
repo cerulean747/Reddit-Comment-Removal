@@ -1,7 +1,15 @@
 import datetime
 import numpy as np
-from keras.callbacks import Callback
 from sklearn.metrics import f1_score, precision_score, recall_score
+from numpy import array,asarray,zeros
+
+
+import tensorflow as tf
+import keras
+
+from keras.callbacks import Callback
+from keras import backend as K 
+from keras.models import load_model
 
 
 class Metrics(Callback):
@@ -43,9 +51,21 @@ class SaveEveryEpoch(Callback):
         self.model_checkpoint_paths.append(path_to_checkpoint)
 
         
+def f1_loss(y, y_hat):    
+    y = tf.cast(y, tf.float32)
+    y_hat = tf.cast(y_hat, tf.float32)
+    tp = tf.reduce_sum(y_hat * y, axis=0)
+    fp = tf.reduce_sum(y_hat * (1 - y), axis=0)
+    fn = tf.reduce_sum((1 - y_hat) * y, axis=0)
+    f1_soft = 2*tp / (2*tp + fn + fp + 1e-16)
+    cost = 1 - f1_soft 
+    
+    return cost
+        
+    
 THRESHOLD = 0.5
 
-def f1(y_true, y_pred, threshold_shift=0.5-THRESHOLD):
+def f1_beta(y_true, y_pred, threshold_shift=0.5-THRESHOLD):
     beta = 2
 
     y_pred = K.clip(y_pred, 0, 1)
