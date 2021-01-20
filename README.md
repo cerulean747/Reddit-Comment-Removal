@@ -31,9 +31,7 @@ I first retrieve and clean my data, perform exploratory data analysis (EDA), use
 
 My data collection process involves first querying both removed and intact comments from r/worldnews for the month of January 2019 from Google BigQuery. In order to restore specifically moderator-removed comments (marked with "[removed]"), I next retrieved the original body text for these comments through Reddit's pushshift.io API. 
 
-I then merged these comments with intact ones and removed unnecessary columns. Next I removed automoderator-flagged (comments that generated an automatic response or were automatically flagged as spam: these comments did not contain the original textual context), user-deleted (marked by "[deleted]" in the text body), and otherwise missing (unrestorable) comments. I also removed comments containing website links: the terms of the site dictate that irrelevant or offensive links will get removed, as seen below.
-
-<img src="/imgs/r_wnews_rules.png" width = "475"/>
+I then merged these comments with intact ones and removed unnecessary columns. Next I removed automoderator-flagged (comments that generated an automatic response or were automatically flagged as spam: these comments did not contain the original textual context), user-deleted (marked by "[deleted]" in the text body), and otherwise missing (unrestorable) comments. I also removed comments containing website links: the terms of the site dictate that irrelevant or offensive links will get removed.
 
 Lastly, I created my target variable as a flag indicating whether or not a comment has been removed (1 = removed, 0 = intact). 
 
@@ -79,11 +77,9 @@ I then perform text featurization using my comment data. My pipeline is below:
 
 ### Non-textual Features
 
-I next investigate the non-textual features in my dataset. A snapshot is below:
+Next I explore the non-textual features in my dataset. The available datafields are author, comment id, parent id (parent comment nested immediately above), comment score, and posting date.
 
-<img src="imgs/snapshot.png" width = "1000"/>
-
-I first investigate how responses to removed comments are treated. Are these responses more likely to be removed themselves? To answer this question, I flag all first- through fifth-level child responses to removed comments. As we see from the below left graph, first-level responses to removed comments are the most common, and decrease exponentially as we move through lower nested responses. 
+I first investigate how responses to removed comments are treated. Are these responses more likely to be removed themselves? To answer this question, I flag all first- through fifth-level child responses to removed comments. As we see below, first-level responses to removed comments are the most common, and decrease exponentially as we move through lower nested responses. 
 
 <img src="imgs/children_removed_comments.png" width = "450"/>
 
