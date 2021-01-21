@@ -159,7 +159,7 @@ My embedding-based modeling results use pretrained word embeddings on a CNN mode
 
 Using just text features yields a weighted F1 of 0.961, weighted precision of 0.958, weighted recall of 0.964, and F1 for the removed comments class of 0.304. Compared to my "best" tf-idf model using text features (random forest using bigrams), weighted F1 scores increased by 0.1% and F1 scores for removed comments increased by 51.2%. 
 
-Using both text and non-text features yields the highest performance out of all models, with a weighted F1 of 0.971, weighted precision of 0.971, weighted recall of 0.974, and F1 for the removed comments class of 0.505. Compared to my "best" tf-idf model using both text and non-text features (logistic regression using unigrams), weighted F1 scores increased by 0.1%, and F1 scores for the removed comments class increased by 13.7%. Therefore, my best overall model is a CNN using a pretrained embedding layer and both text and non-text features. 
+Using both text and non-text features yields the highest performance out of all models, with a weighted F1 of 0.972, weighted precision of 0.971, weighted recall of 0.974, and F1 for the removed comments class of 0.505. Compared to my "best" tf-idf model using both text and non-text features (logistic regression using unigrams), weighted F1 scores increased by 0.1%, and F1 scores for the removed comments class increased by 13.7%. Therefore, my best overall model is a CNN using a pretrained embedding layer and both text and non-text features. 
 
 
 ## Summary
